@@ -1,0 +1,802 @@
+<DizaneScreen>:
+    canvas:
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2
+            size: root.width, root.height / 1.7
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 2
+
+
+    Image:
+        source: 'sourses/rds.png'
+        pos: root.width/2 - (root.width * 0.9)/2, root.height / 3.5
+        size_hint: 0.9, 0.9
+
+    BoxLayout:
+        size_hint: .8, .3
+        pos: root.width / 2 - root.width * .4, root.height / 8
+        orientation: 'vertical'
+        spacing: 5
+        Label:
+            text: 'IP-adress'
+            font_size: '35sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            color: .08, .26, .47, 1
+        TextInput:
+            id: connect_input
+            text: ''
+            background_color: 1, 1, 1, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '25sp'
+            foreground_color: .08, .26, .47, 1
+            halign: 'center'
+            multiline: False
+        BoxLayout:
+            padding: 50, 0, 50, 0
+            orientation: 'vertical'
+            spacing: 5
+
+        Button:
+            id: con_b
+            text: 'Connect'
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '25sp'
+            on_press: root.connect(root.manager)
+        Button:
+            text: 'help?'
+            background_color: 1, 1, 1, 1
+            background_normal: ''
+            background_down: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '25sp'
+            on_press: Factory.MyPopup().open()
+            color: .75, .67, .80, 1
+
+
+
+#:import Factory kivy.factory.Factory
+<MyPopup@Popup>:
+    title: 'help'
+    title_align: 'center'
+    title_size: '30sp'
+    title_font: 'sourses/Montserrat-Light.ttf'
+    separator_color: .08, .26, .47, 1
+    size_hint: .9, .5
+    Label:
+        text: 'IP-адрес (Internet Protocol Address) — это уникальный числовой идентификатор, который присваивается каждому устройству, подключенному к сети, использующей интернет-протокол для связи. IP-адреса необходимы для маршрутизации данных между устройствами в сети, позволяя им находить друг друга и обмениваться информацией. Вы можете посмотреть его в терминале машины-сервера.'
+        size_hint: .9, .9
+        text_size: root.width * .8, root.height * .8
+        halign: 'center'
+        valign: 'center'
+        font_size: '15sp'
+        font_name: 'sourses/Montserrat-Light.ttf'
+
+<ConnectScreen>:
+    canvas:
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2.5
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 1.6
+        Ellipse:
+            pos: root.width / 2 - root.height * .08, root.height / 1.4
+            size: root.height * 0.16, root.height * 0.16
+            source: 'sourses/icon.png'
+    Button:
+        text: '×'
+        size_hint: .15, 0.085
+        pos: root.width - root.width * .15, root.height / 1.1
+        font_size: '40sp'
+        background_normal: ''
+        background_color: .08, .26, .47, 1
+        on_press: root.close(root.manager)
+
+    Label:
+        size_hint: .5, 0.095
+        pos: root.width / 2 - root.width * .25, root.height / 1.1
+        text: 'Menu'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '40sp'
+
+    Label:
+        size_hint: .5, 0.095
+        pos: root.width / 2 - root.width * .25, root.height / 1.57
+        text: 'Connected'
+        font_size: '35sp'
+        color: .86, .93, 1, 1
+        font_name: 'sourses/Montserrat-Light.ttf'
+
+    GridLayout:
+        cols: 2
+        spacing: 25
+        size_hint: .9, .57
+        pos: root.width * .05, root.height * .02
+        Button:
+            background_normal: 'sourses/remote_control.png'
+            background_down:
+            on_press: root.manager.current = 'control'
+        Button:
+            background_normal: 'sourses/control-panel.png'
+            background_down:
+            on_press: root.manager.current = 'auto'
+        Button:
+            background_normal: 'sourses/keyboard.png'
+            background_down:
+            on_press: root.manager.current = 'keyboard'
+        Button:
+            background_normal: 'sourses/shutdown_button.png'
+            background_down:
+            on_press: root.manager.current = 'shutdown'
+        Button:
+            background_normal: 'sourses/image.png'
+            background_down:
+            on_press: root.manager.current = 'image'
+        Button:
+            background_normal: 'sourses/display.png'
+            background_down:
+            on_press: root.manager.current = 'display'
+
+<ControlScreen>:
+    canvas:
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2.5
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 1.1
+    Button:
+        size_hint: .15, 0.085
+        pos: root.width - root.width * .15, root.height / 1.1
+        font_size: '40sp'
+        background_normal: ''
+        text: '→'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        background_color: .08, .26, .47, 1
+        on_press: root.manager.current = 'connect'
+
+    Label:
+        size_hint: .5, 0.095
+        pos: root.width / 2 - root.width * .25 + 5, root.height / 1.1
+        text: 'Mouse'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '40sp'
+
+    Image:
+        source: 'sourses/mouse-cursor.png'
+        pos: root.width / 2 - root.width * .425, root.height / 4.1
+        size_hint: 0.85, 0.9
+
+    GridLayout:
+        cols: 3
+        spacing: 12
+        size_hint: .9, .4
+        pos: root.width / 2 - root.width * .45, root.height * 0.05
+        Widget:
+        Button:
+            id: up
+            text: 'UP'
+            on_state: root.pressed('up')
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '28sp'
+        Widget:
+        Button:
+            id: left
+            text: 'LEFT'
+            on_state: root.pressed('left')
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '28sp'
+        Button:
+            text: 'CLICK'
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '28sp'
+            on_press: root.returning('click')
+
+        Button:
+            id: right
+            text: 'RIGHT'
+            on_state: root.pressed('right')
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '28sp'
+        Widget:
+        Button:
+            on_state: root.pressed('down')
+            id: down
+            text: 'DOWN'
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '28sp'
+        Widget:
+
+<AutoScreen>:
+    canvas:
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2.5
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 1.1
+
+    Button:
+        size_hint: .15, 0.085
+        pos: root.width - root.width * .15, root.height / 1.1
+        font_size: '40sp'
+        background_normal: ''
+        text: '→'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        background_color: .08, .26, .47, 1
+        on_press: root.manager.current = 'connect'
+    Label:
+        size_hint: .5, 0.095
+        pos: root.width / 2 - root.width * .25 + 5, root.height / 1.1
+        text: 'Auto'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '40sp'
+
+    BoxLayout:
+        size_hint: .7, .15
+        spacing: 10
+        orientation: 'vertical'
+        pos: root.width / 2 - root.width * .35, root.height / 1.4
+        Button:
+            background_color: .08, .26, .47, .5
+            background_normal: ''
+            text: 'Setting'
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            on_press: root.manager.current = 'auto_setting'
+        Button:
+            background_color: .08, .26, .47, .5
+            background_normal: ''
+            text: 'Reload'
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            on_press: root.reloading()
+
+    GridLayout:
+        cols: 2
+        spacing: 25
+        size_hint: 0.9, 0.5
+        pos: root.width / 2 - root.width * .45, root.height * 0.1
+        Button:
+            id: but_1
+            on_press: root.open('1')
+            text: root.texts_button[0]
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+        Button:
+            text: root.texts_button[2]
+            on_press: root.open('2')
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            id: but_2
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+        Button:
+            text: root.texts_button[4]
+            on_press: root.open('3')
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            id: but_3
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+        Button:
+            on_press: root.open('4')
+            text: root.texts_button[6]
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            id: but_4
+            on_press: root.open('4')
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+        Button:
+            text: root.texts_button[8]
+            font_size: '30sp'
+            on_press: root.open('5')
+            font_name: 'sourses/Montserrat-Light.ttf'
+            id: but_5
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+        Button:
+            text: root.texts_button[10]
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            id: but_6
+            on_press: root.open('6')
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+
+<TwoMyPopup@Popup>:
+    title: 'help'
+    title_align: 'center'
+    title_size: '35sp'
+    title_font: 'sourses/Montserrat-Light.ttf'
+    separator_color: .08, .26, .47, 1
+    size_hint: .9, .5
+    Label:
+        text: 'Для настройки кнопок, наведитесь на желаемый ярлык приложения на сервере, затем нажмите на кнопку: "request". Вам выдадут данные, которые следует ввести в поле "Enter data".'
+        size_hint: .9, .9
+        text_size: root.width * .8, root.height * .8
+        halign: 'center'
+        valign: 'center'
+        font_size: '18sp'
+        font_name: 'sourses/Montserrat-Light.ttf'
+
+<AutoScreen_Setting>:
+    canvas:
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2.5
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 1.3
+
+    Button:
+        size_hint: .15, 0.085
+        pos: root.width - root.width * .15, root.height / 1.1
+        font_size: '40sp'
+        background_normal: ''
+        text: '→'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        background_color: .08, .26, .47, 1
+        on_press: root.manager.current = 'auto'
+    Label:
+        size_hint: .5, 0.095
+        pos: root.width / 2 - root.width * .25 + 5, root.height / 1.1
+        text: 'Setting'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '40sp'
+
+    BoxLayout:
+        size_hint: .8, .4
+        pos: root.width / 2 - root.width * .4, root.height * 0.35
+        orientation: 'vertical'
+        Label:
+            text: 'Select number'
+            font_size: '30sp'
+            color: .08, .26, .47, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+        TextInput:
+            id: number_input
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '30sp'
+            foreground_color: .08, .26, .47, 1
+            halign: 'center'
+            multiline: False
+        Label:
+            text: 'Select button name'
+            font_size: '30sp'
+            color: .08, .26, .47, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+        TextInput:
+            id: name_input
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '30sp'
+            foreground_color: .08, .26, .47, 1
+            halign: 'center'
+            multiline: False
+        Label:
+            text: 'Enter data'
+            font_size: '30sp'
+            color: .08, .26, .47, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+        TextInput:
+            id: data_input
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '30sp'
+            foreground_color: .08, .26, .47, 1
+            halign: 'center'
+            multiline: False
+        Button:
+            text: 'help'
+            font_size: '30sp'
+            background_normal: ''
+            color: .75, .67, .80, 1
+            background_color: 1, 1, 1, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+            on_press: Factory.TwoMyPopup().open()
+
+    BoxLayout:
+        size_hint: .8, .25
+        pos: root.width / 2 - root.width * .4, root.height * 0.05
+        spacing: 15
+        orientation: 'vertical'
+        Button:
+            text: 'Request'
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+            on_press: root.request()
+        Button:
+            text: 'Save data'
+            font_size: '30sp'
+            on_press: root.save()
+            font_name: 'sourses/Montserrat-Light.ttf'
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+        Button:
+            text: 'Clear all data'
+            font_size: '30sp'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            background_down:
+            on_press: root.cleaning()
+<KeyboardScreen>:
+    canvas:
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2.5
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: .08, .26, .47, 0.5
+        Line:
+            points: root.width * .1, root.height / 3, root.width - root.width * .1, root.height / 3, root.width - root.width * .1, root.width * .1, root.width * .1, root.width * .1
+            width: 5
+            close: True
+    Button:
+        size_hint: .15, 0.085
+        pos: root.width - root.width * .15, root.height / 1.1
+        font_size: '40sp'
+        background_normal: ''
+        text: '→'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        background_color: .08, .26, .47, 1
+        on_press: root.manager.current = 'connect'
+    BoxLayout:
+        size_hint: .8, .25
+        pos: root.width / 2 - root.width * .4, root.height * .4
+        orientation: 'vertical'
+        spacing: 25
+        Label:
+            text: 'Enter key'
+            font_size: '35sp'
+            color: .08, .26, .47, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+        TextInput:
+            id: keyboard_input
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '35sp'
+            foreground_color: .08, .26, .47, 1
+            halign: 'center'
+            multiline: False
+
+        Button:
+            text: 'Send'
+            background_color: .08, .26, .47, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '35sp'
+            on_press: root.key_send()
+
+    Image:
+        source: 'sourses/finger.png'
+        pos: root.width/2 - root.width * 0.45, root.height/ 2.6
+        size_hint: 0.9, 0.9
+
+<ShutdownScreen>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 2
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2.8
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: .54, .63, .74, 1
+        Line:
+            points: 0, root.height / 1.1, root.width, root.height / 1.1
+            width: 5
+            close: True
+        Color:
+            rgba: 1, 1, 1, 1
+        Line:
+            points: root.width * .1, root.height / 1.2, root.width - root.width * .1, root.height / 1.2, root.width - root.width * .1, root.height / 2, root.width * .1, root.height / 2
+            width: 30
+            close: True
+        Rectangle:
+            pos: root.width * .1, root.height / 2
+            size: root.width - root.width * .2, root.height / 1.2 - root.height / 2
+        Color:
+            rgba: .08, .26, .47, 0.5
+        Line:
+            points: root.width * .1, root.height / 3, root.width - root.width * .1, root.height / 3, root.width - root.width * .1, root.width * .1, root.width * .1, root.width * .1
+            width: 5
+            close: True
+    Button:
+        size_hint: .15, 0.085
+        pos: root.width - root.width * .15, root.height / 1.09
+        font_size: '40sp'
+        background_normal: ''
+        text: '→'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        background_color: .08, .26, .47, 1
+        on_press: root.manager.current = 'connect'
+    Label:
+        size_hint: .5, 0.095
+        pos: root.width / 2 - root.width * .25 + 5, root.height / 1.1
+        text: 'Shutdown'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '40sp'
+    GridLayout:
+        cols: 2
+        pos: root.width * .1, root.height / 2.04
+        size_hint: .8, .35
+        Image:
+            source: 'sourses/power-off-.png'
+        Button:
+            text: 'Power off'
+            background_color: 1, 1, 1, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            color: 0, 0, 0, 1
+            font_size: '30sp'
+            on_press: root.shutdown('Power off')
+        Image:
+            source: 'sourses/reload.png'
+        Button:
+            text: 'Reload'
+            background_color: 1, 1, 1, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            color: 0, 0, 0, 1
+            on_press: root.shutdown('Reload')
+            font_size: '30sp'
+        Image:
+            source: 'sourses/sleep-.png'
+        Button:
+            text: 'Sleep'
+            background_color: 1, 1, 1, 1
+            background_normal: ''
+            font_name: 'sourses/Montserrat-Light.ttf'
+            color: 0, 0, 0, 1
+            on_press: root.shutdown('Sleep')
+            font_size: '30sp'
+
+
+<ImageScreen>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 2
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2.8
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: 1, 1, 1, 1
+        Line:
+            points: 49, root.height / 1.3 - 1, root.width - 51, root.height / 1.3 - 1, root.width - 51, root.height / 1.9 - 1, 49, root.height / 1.9 - 1
+            width: 1
+            close: True
+            dash_length: 20
+            dash_offset: 5
+        Color:
+            rgba: 1, 0, 0, 1
+    BoxLayout:
+        size_hint: .4, .2
+        orientation: 'vertical'
+        pos: root.width / 2 - root.width * .2,  root.height / 1.8
+        Image:
+            source: 'sourses/image_icon.png'
+        Button:
+            text: 'Load'
+            background_normal: ''
+            background_color: .09, .31, .56, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '40sp'
+            on_press: Factory.ThreeMyPopup().open()
+
+    Button:
+        size_hint: .15, 0.085
+        pos: root.width - root.width * .15, root.height / 1.1
+        font_size: '40sp'
+        background_normal: ''
+        text: '→'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        background_color: .08, .26, .47, 1
+        on_press: root.manager.current = 'connect'
+
+    Label:
+        size_hint: .5, 0.095
+        pos: root.width / 2 - root.width * .25 + 5, root.height / 1.1
+        text: 'Image'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '40sp'
+
+    Label:
+        id: vibor
+        size_hint: .8, 0.095
+        pos: root.width * .1, root.height / 2.5
+        text: 'Not selected'
+        text_size: root.width - root.width * .1, None
+
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '30sp'
+
+    BoxLayout:
+        spacing: 5
+        size_hint: .8 , .095
+        pos: root.width / 2 - root.width * .4, root.height / 4
+        Button:
+            text: 'Reload'
+            background_normal: ''
+            background_color: .08, .26, .47, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '30sp'
+            on_press: root.reload()
+        Button:
+            text: 'Close'
+            background_normal: ''
+            background_color: .08, .26, .47, 1
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '30sp'
+            on_press: root.close()
+    Button:
+        size_hint: .4, .1
+        pos: root.width / 2 - root.width * .2,  root.height / 15
+        text: 'Send'
+        background_normal: ''
+        background_color: .09, .31, .56, 1
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '30sp'
+        on_press: root.send_image()
+
+<ThreeMyPopup>:
+    title: 'Explorer'
+    title_align: 'center'
+    title_size: '35'
+    title_font: 'sourses/Montserrat-Light.ttf'
+    separator_color: .08, .26, .47, 1
+    size_hint: .9, .6
+    BoxLayout:
+        orientation: 'vertical'
+        FileChooser:
+            rootpath: '/storage/emulated/0/'
+            id: File
+            filters: ['*.png']
+            font_name: 'sourses/Montserrat-Light.ttf'
+            FileChooserIconLayout:
+        Button:
+            id: send_image_button
+            size_hint: 1, .2
+            background_color: .38, .67, .65, 1
+            text: 'Select'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '40sp'
+            on_press: root.Check_path()
+
+
+<DisplayScreen>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: 0, 0
+            size: root.width, root.height / 2
+        Color:
+            rgba: .08, .26, .47, 1
+        Rectangle:
+            pos: 0, root.height / 2.8
+            size: root.width, root.height / 1.5
+        Color:
+            rgba: 1, 1, 1, 1
+
+        Rectangle:
+            pos: root.width / 2 - root.width * .4 - root.width * .02, root.height / 2.3 - root.width * .02
+            size: root.width * .8 + (root.width * .02) * 2, root.height * .1 + (root.width * .02) * 2
+
+        Color:
+            rgba: .09, .31, .56, 1
+        Rectangle:
+            pos: root.width / 2 - root.width * .4 - root.width * .02, root.height / 1.5 - root.width * .02
+            size: root.width * .8 + (root.width * .02) * 2, root.height * .2 + (root.width * .02) * 2
+    Button:
+        size_hint: .15, 0.085
+        pos: root.width - root.width * .15, root.height / 1.1
+        font_size: '40sp'
+        background_normal: ''
+        text: '→'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        background_color: .08, .26, .47, 1
+        on_press: root.manager.current = 'connect'
+
+    Label:
+        size_hint: .5, 0.095
+        pos: root.width / 2 - root.width * .25 + 5, root.height / 1.1
+        text: 'Language'
+        font_name: 'sourses/Montserrat-Light.ttf'
+        font_size: '40sp'
+
+    BoxLayout:
+        size_hint: .8, .2
+        pos: root.width / 2 - root.width * .4, root.height / 1.5
+        orientation: 'vertical'
+        Label:
+            text: 'Language:'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '35sp'
+        Label:
+            id: lang_end_label
+            text: 'Eng'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '30sp'
+
+    BoxLayout:
+        size_hint: .8, .1
+        pos: root.width / 2 - root.width * .4, root.height / 2.3
+        spacing: 25
+        Button:
+            id: eng_b
+            text: 'Eng'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '30sp'
+            background_normal: ''
+            background_color: .09, .31, .56, 1
+            on_press: root.laung('Eng')
+
+        Button:
+            id: rus_b
+            text: 'Rus'
+            font_name: 'sourses/Montserrat-Light.ttf'
+            font_size: '30sp'
+            on_press: root.laung('Rus')
+            background_normal: ''
+            background_color: .06, .21, .38, 1
+
