@@ -12,3 +12,6 @@
     
     3. Пользуйтесь.
 
+
+Оценка: 
+    https://forms.gle/8KEac19mDUseXiMA9
